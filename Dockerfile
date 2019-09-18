@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
 RUN npm install
-RUN npm install nodemon
+RUN npm install -g nodemon
 COPY . .
 CMD npm run dev
 EXPOSE 3000

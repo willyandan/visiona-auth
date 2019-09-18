@@ -14,8 +14,9 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: visona
+      POSTGRES_USER: user
       POSTGRES_PASSWORD: example
+      POSTGRES_DB: visona
 
   adminer:
     image: adminer
