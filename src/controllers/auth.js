@@ -16,7 +16,9 @@ const authenticate = async (req, res)=>{
       email:req.body.email,
       raw:true
     })
-    console.log(user)
+    console.log(req.body.email)
+    console.log(req.body.password)
+    
     if(!user){
       throw new CustomError(404,'UserNotFound', 'User not found')
     }
