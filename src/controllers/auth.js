@@ -13,12 +13,12 @@ const authenticate = async (req, res)=>{
       throw new CustomError(400,'InvalidRequest','É preciso enviar o email e senha para realizar o login')
     }
     const user = await User.findOne({
-      email:req.body.email,
+      where:{email:req.body.email},
       raw:true
     })
     console.log(req.body.email)
     console.log(req.body.password)
-    
+
     if(!user){
       throw new CustomError(404,'UserNotFound', 'User not found')
     }
