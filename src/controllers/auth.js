@@ -15,6 +15,7 @@ const authenticate = async (req, res)=>{
       email:req.body.email,
       raw:true
     })
+    console.log(user)
     delete user.password
     res.status(200).send({
       user,
@@ -30,6 +31,7 @@ const authenticate = async (req, res)=>{
         name:error.name
       }).end()
     }else{
+      console.log(error)
       res.status(500).send({
         code:500,
         message:'Erro interno',
