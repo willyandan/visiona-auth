@@ -84,6 +84,39 @@ const refresh = async (req, res) => {
   }
 }
 
+
+const getData = async (req, res) => {
+  try {
+    const baearer = req.headers['authorization']
+    if(!baearer){
+      throw new customError(400,'JsonWebTokenError','O Token inválido')
+    }
+    const oldToken = baearer.split('Bearer ')[1]
+    if(!oldToken){
+      throw new customError(400,'JsonWebTokenError','O Token inválido')
+    }
+    const token = auth.getData(oldToken)
+    res.status(200).send({
+      token
+    }).end()
+    
+  } catch (error) {
+    debug(error)
+    if(error instanceof CustomError){
+      res.status(error.code).send({
+        code:error.code,
+        message:error.message,
+        name:error.name
+      }).end()
+    }else{
+      res.status(500).send({
+        code:500,
+        message:'Erro interno',
+        name:'InternalError'
+      }).end()
+    }
+  }
+}
 module.exports = {
   authenticate,
   refresh
