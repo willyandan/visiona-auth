@@ -2,6 +2,7 @@ const { User } = require('../models/index')
 const CustomError = require('../services/customError')
 const debug = require('debug')('auth-sakaue:auth');
 const auth = require('../services/authenticate')
+const userService = require('../services/user')
 
 const authenticate = async (req, res)=>{
   try {
@@ -15,7 +16,15 @@ const authenticate = async (req, res)=>{
       email:req.body.email,
       raw:true
     })
-    console.log(user)
+    
+    if(!user){
+      throw new CustomError(404,'UserNotFound', 'User not found')
+    }
+
+    if(!userService.comparePassword(req.body.password, user.password)){
+      throw new CustomError(401,'InvalidPassword', 'Invalid password')
+    }
+
     delete user.password
     res.status(200).send({
       user,
