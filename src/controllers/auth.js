@@ -119,5 +119,6 @@ const getData = async (req, res) => {
 }
 module.exports = {
   authenticate,
-  refresh
+  refresh,
+  getData
 }
