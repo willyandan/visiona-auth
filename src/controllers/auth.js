@@ -20,8 +20,8 @@ const authenticate = async (req, res)=>{
     if(!user){
       throw new CustomError(404,'UserNotFound', 'User not found')
     }
-    console.log(user.password, req.body.password)
-    if(!userService.comparePassword(req.body.password, user.password)){
+
+    if(!userService.comparePassword(`${req.body.password}`, `${user.password}`)){
       throw new CustomError(401,'InvalidPassword', 'Invalid password')
     }
 
