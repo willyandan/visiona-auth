@@ -24,9 +24,9 @@ features sao novas implementações que serao criadas no sistema com auxilio do 
 `git flow feature start nomeDaFeature`
  agora um novo braço é criado 
 ### Finalizando uma feature
-`git add ./`
-`git commit -m"commit message"`
-`git flow feature finish nomeDaFeature`
+`git add ./`  
+`git commit -m"commit message"`  
+`git flow feature finish nomeDaFeature`  
 
 ## Subindo alterações
 Certifique que vc está no braço develop com sua feature finalizada
