@@ -21,6 +21,7 @@ const authenticate = async (req, res)=>{
       token: auth.generateJwt({user})
     }).end()
   } catch (error) {
+    console.log(error)
     debug(error)
     if(error instanceof CustomError){
       res.status(error.code).send({
